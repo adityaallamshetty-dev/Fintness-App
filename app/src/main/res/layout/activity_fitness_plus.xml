@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_tracker_gradient">
+    android:background="@drawable/bg_tracker_gradient"
+    android:fillViewport="true"
+    android:overScrollMode="never">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,31 +18,54 @@
             android:layout_width="44dp"
             android:layout_height="44dp"
             android:background="@drawable/bg_tracker_card"
+            android:contentDescription="@string/app_name"
             android:padding="10dp"
             android:src="@android:drawable/ic_media_previous"
             android:tint="@color/tracker_primary_text" />
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
-            android:text="@string/fitness_plus_title"
-            android:textColor="@color/tracker_primary_text"
-            android:textSize="28sp"
-            android:textStyle="bold" />
+            android:background="@drawable/bg_home_hero"
+            android:orientation="vertical"
+            android:padding="20dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:text="@string/fitness_plus_subtitle"
-            android:textColor="@color/tracker_secondary_text"
-            android:textSize="14sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fitness_plus_title"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/fitness_plus_subtitle"
+                android:textColor="@color/home_hero_subtitle"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:background="@drawable/bg_home_stat"
+                android:paddingStart="12dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="12dp"
+                android:paddingBottom="8dp"
+                android:text="@string/plan_price"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="14dp"
             android:background="@drawable/bg_tracker_card"
             android:orientation="vertical"
             android:padding="16dp">
@@ -48,37 +73,64 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Premium Features"
+                android:text="@string/premium_features_title"
                 android:textColor="@color/tracker_primary_text"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="- Guided workouts&#10;- Custom goals&#10;- Weekly coaching&#10;- Family sharing"
+                android:layout_marginTop="10dp"
+                android:text="@string/premium_features_body"
                 android:textColor="@color/tracker_secondary_text"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:lineSpacingExtra="6dp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnStartTrial"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
+                android:layout_height="52dp"
+                android:layout_marginTop="16dp"
                 android:text="@string/start_trial"
                 app:backgroundTint="@color/tracker_accent"
-                app:cornerRadius="14dp" />
+                app:cornerRadius="16dp" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnRestorePlan"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_height="52dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/restore_plan"
                 android:textColor="@color/tracker_primary_text"
                 app:backgroundTint="@color/tracker_chip_bg"
-                app:cornerRadius="14dp" />
+                app:cornerRadius="16dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_tracker_card"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/weekly_coach_title"
+                android:textColor="@color/tracker_primary_text"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/weekly_coach_body"
+                android:textColor="@color/tracker_secondary_text"
+                android:textSize="14sp"
+                android:lineSpacingExtra="4dp" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

@@ -37,6 +37,12 @@
             android:exported="false" />
         <activity
             android:name=".StepTrackerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity2"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -44,12 +50,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".Activity2"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="true"/>
 
         <service
             android:name=".StepTrackingService"

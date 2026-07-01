@@ -1,23 +1,53 @@
 <resources>
-    <string name="app_name">PulseForge Fitness</string>
-    <string name="hint_weight">Weight (kg)</string>
-    <string name="hint_height">Height (feet)</string>
-    <string name="hint_heightIN">Height (inches)</string>
+    <string name="app_name">FitNest Fitness</string>
+
+    <string name="home_greeting">Good day</string>
+    <string name="home_hero_title">Build your healthier day</string>
+    <string name="home_hero_subtitle">Track steps, calories, BMI, hydration, workouts, and progress from one simple dashboard.</string>
+    <string name="home_actions_title">Today tools</string>
+    <string name="home_stat_steps">Live steps</string>
+    <string name="home_stat_energy">Active energy</string>
+    <string name="home_steps_empty">0</string>
+    <string name="home_energy_empty">0 kcal</string>
+    <string name="home_tracker_hint">Live steps and daily ring</string>
+    <string name="home_workout_hint">Walk, run, or find a route</string>
+    <string name="home_bmi_hint">Quickly check your BMI and get a clear health category.</string>
+    <string name="start_today_workout">Start Today Workout</string>
+    <string name="icon_steps">S</string>
+    <string name="icon_workout">W</string>
+    <string name="icon_fitness_plus">+</string>
+    <string name="icon_share">R</string>
+
+    <string name="hint_weight">Weight</string>
+    <string name="hint_height">Feet</string>
+    <string name="hint_heightIN">Inches</string>
     <string name="hint_button">Calculate BMI</string>
     <string name="result_placeholder">Your BMI result appears here</string>
+    <string name="bmi_empty_short">BMI</string>
+    <string name="bmi_result_short">%1$.1f\n%2$s</string>
+    <string name="bmi_underweight">Under</string>
+    <string name="bmi_healthy">Healthy</string>
+    <string name="bmi_overweight">Over</string>
+    <string name="bmi_obese">High</string>
+    <string name="bmi_under_message">BMI %1$.1f: you are underweight. Add nutrient-dense meals and strength training.</string>
+    <string name="bmi_healthy_message">BMI %1$.1f: you are in a healthy range. Keep your routine consistent.</string>
+    <string name="bmi_over_message">BMI %1$.1f: you are above the healthy range. Start with daily walks and balanced meals.</string>
+    <string name="bmi_obese_message">BMI %1$.1f: this is a high BMI range. Consider a doctor-guided fitness plan.</string>
     <string name="open_doctor">Doctor Consultation</string>
     <string name="open_step_tracker">Open Step Tracker</string>
     <string name="hero_title">Daily Health Dashboard</string>
     <string name="hero_subtitle">Track BMI, monitor activity, and stay consistent.</string>
-    <string name="splash_title">BMI Wellness</string>
+
+    <string name="splash_title">FitNest</string>
     <string name="splash_subtitle">Smart BMI and movement tracker</string>
     <string name="doctor_name">Doctor: Dr. Arunkumar</string>
     <string name="doctor_speciality">Speciality: General Physician</string>
     <string name="doctor_address">Address: Bangalore</string>
     <string name="doctor_phone">Phone: 9686729490</string>
     <string name="doctor_fee">Consultation Fee: Rs 1000</string>
-    <string name="doctor_note">Tip: Keep a weekly activity routine of walk + run for best health outcomes.</string>
+    <string name="doctor_note">Tip: keep a weekly routine of walking, running, hydration, and basic strength work.</string>
     <string name="call_doctor">Call Doctor</string>
+
     <string name="tracker_title">Step Tracker</string>
     <string name="tracker_subtitle">Live step count with walk or run detection</string>
     <string name="steps_label">Steps</string>
@@ -55,12 +85,12 @@
     <string name="quick_remove_empty">No manual quick-add activity to remove.</string>
     <string name="date_selected_message">Showing activity for %1$s</string>
     <string name="route_search_action">Find running route</string>
-    <string name="live_notification_title">PulseForge Live Tracking</string>
-    <string name="live_notification_text">%1$,d steps • %2$s</string>
+    <string name="live_notification_title">FitNest Live Tracking</string>
+    <string name="live_notification_text">%1$,d steps - %2$s</string>
     <string name="live_notification_channel_name">Live Step Tracking</string>
     <string name="live_notification_channel_description">Keeps running and counting steps in the background.</string>
-    <string name="live_status_active">Live: %1$,d steps • %2$s</string>
-    <string name="live_status_milestone">Live update: %1$,d steps • %2$s</string>
+    <string name="live_status_active">Live: %1$,d steps - %2$s</string>
+    <string name="live_status_milestone">Live update: %1$,d steps - %2$s</string>
     <string name="notification_permission_note">Allow notifications to see persistent background tracking status.</string>
 
     <string name="fitness_plus_title">Fitness+ Programs</string>
@@ -69,6 +99,11 @@
     <string name="restore_plan">Restore Plan</string>
     <string name="trial_started">Trial started successfully.</string>
     <string name="plan_restored">Your plan is now active.</string>
+    <string name="premium_features_title">Premium Features</string>
+    <string name="premium_features_body">Guided workouts\nCustom goals\nWeekly coaching\nFamily sharing</string>
+    <string name="plan_price">7 days free, then Rs 199/month</string>
+    <string name="weekly_coach_title">Weekly Coach</string>
+    <string name="weekly_coach_body">Your plan adapts around steps, BMI, mood, hydration, and active calories so each week has a clear target.</string>
 
     <string name="workout_title">Workout Hub</string>
     <string name="workout_subtitle">Start real sessions and find nearby places</string>
@@ -79,6 +114,10 @@
     <string name="run_started">Run session started.</string>
     <string name="maps_unavailable">No maps app found.</string>
     <string name="no_compatible_app">No compatible app found.</string>
+    <string name="workout_plan_title">Today Plan</string>
+    <string name="workout_plan_body">Warm up for 5 minutes\nWalk briskly for 12 minutes\nRun easy for 8 minutes\nCool down and hydrate</string>
+    <string name="route_card_title">Outdoor Routes</string>
+    <string name="route_card_body">Find nearby parks or tracks and start moving with a safer open-space route.</string>
 
     <string name="sharing_title">Sharing Center</string>
     <string name="sharing_subtitle">Share progress with friends and family</string>
@@ -86,6 +125,9 @@
     <string name="invite_sms">Invite by SMS</string>
     <string name="copy_stats">Copy Stats</string>
     <string name="stats_copied">Stats copied.</string>
+    <string name="progress_card_title">Progress Snapshot</string>
+    <string name="progress_card_body">Share a clean health update with your steps, BMI progress, workout habit, and daily consistency.</string>
+
     <string name="momentum_title">Momentum Dashboard</string>
     <string name="momentum_subtitle">Track movement, goals, and quick actions in one view</string>
     <string name="live_ring_title">Live Step Ring</string>
@@ -102,8 +144,8 @@
     <string name="quick_actions_title">Quick Actions</string>
     <string name="open_fitness_plus">Open Fitness+</string>
     <string name="open_sharing_center">Open Sharing</string>
-    <string name="adaptive_coach_title">Adaptive Coach (Experimental)</string>
-    <string name="recovery_flux_title">Recovery Flux Score</string>
+    <string name="adaptive_coach_title">Adaptive Coach</string>
+    <string name="recovery_flux_title">Recovery Score</string>
     <string name="eco_impact_title">Eco Impact</string>
     <string name="hydration_title">Hydration</string>
     <string name="add_water">+250 ml</string>
@@ -124,6 +166,7 @@
     <string name="hydration_fmt">%1$d ml</string>
     <string name="coach_suggestion_default">Select your mood to get an adaptive fitness suggestion.</string>
     <string name="energy_peak_fmt">Peak %1$d CAL</string>
+
     <string name="tracker_bmi_title">BMI Calculator</string>
     <string name="tracker_bmi_subtitle">Enter your details to check your BMI instantly.</string>
     <string name="tracker_bmi_weight_hint">Weight (kg)</string>
@@ -140,6 +183,4 @@
     <string name="tracker_bmi_healthy">Healthy</string>
     <string name="tracker_bmi_overweight">Overweight</string>
     <string name="tracker_bmi_obese">Obese</string>
-
 </resources>
-

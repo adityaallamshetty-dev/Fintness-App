@@ -28,4 +28,10 @@
     <color name="tracker_success">#22A06B</color>
     <color name="tracker_progress_track">#E5EEF6</color>
     <color name="tracker_chip_bg">#EAF1F8</color>
+
+    <color name="home_hero_start">#16324F</color>
+    <color name="home_hero_end">#1BB2C8</color>
+    <color name="home_hero_subtitle">#D9F7FA</color>
+    <color name="home_stat_bg">#24FFFFFF</color>
+    <color name="home_stat_stroke">#40FFFFFF</color>
 </resources>
