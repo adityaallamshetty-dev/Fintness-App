@@ -25,6 +25,7 @@
             <ImageView
                 android:layout_width="48dp"
                 android:layout_height="48dp"
+                android:contentDescription="@string/app_name"
                 android:src="@drawable/ic_fitness_logo" />
 
             <LinearLayout
@@ -35,6 +36,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tvHomeGreeting"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/home_greeting"
@@ -58,7 +60,7 @@
                 android:contentDescription="@string/open_step_tracker"
                 app:backgroundTint="@color/tracker_accent_alt"
                 app:cornerRadius="24dp"
-                app:icon="@android:drawable/ic_menu_mylocation"
+                app:icon="@drawable/ic_steps"
                 app:iconTint="@color/white" />
         </LinearLayout>
 
@@ -71,18 +73,38 @@
             android:orientation="vertical"
             android:padding="20dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/home_hero_title"
-                android:textColor="@color/white"
-                android:textSize="30sp"
-                android:textStyle="bold" />
-
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/home_hero_title"
+                    android:textColor="@color/white"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvHomeReadiness"
+                    android:layout_width="78dp"
+                    android:layout_height="78dp"
+                    android:background="@drawable/bg_home_stat"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    tools:text="82" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvHomePlan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:text="@string/home_hero_subtitle"
                 android:textColor="@color/home_hero_subtitle"
                 android:textSize="14sp" />
@@ -148,6 +170,31 @@
                 </LinearLayout>
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/tvHomeGoal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/bg_goal_chip"
+                android:paddingStart="12dp"
+                android:paddingTop="7dp"
+                android:paddingEnd="12dp"
+                android:paddingBottom="7dp"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                tools:text="42% daily move goal" />
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/progressHomeGoal"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_marginTop="10dp"
+                android:max="100"
+                app:indicatorColor="@color/white"
+                app:trackColor="@color/home_stat_bg"
+                app:trackCornerRadius="8dp" />
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/openWorkout"
                 android:layout_width="match_parent"
@@ -157,8 +204,96 @@
                 android:textColor="@color/tracker_primary_text"
                 app:backgroundTint="@color/white"
                 app:cornerRadius="16dp"
-                app:icon="@android:drawable/ic_media_play"
+                app:icon="@drawable/ic_workout"
                 app:iconTint="@color/tracker_primary_text" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="92dp"
+                android:layout_marginEnd="6dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_metric_shell"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/home_metric_mode"
+                    android:textColor="@color/tracker_secondary_text"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tvHomeMode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/tracker_primary_text"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    tools:text="Walking" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="92dp"
+                android:layout_marginStart="6dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_metric_shell"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/home_metric_distance"
+                    android:textColor="@color/tracker_secondary_text"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tvHomeDistance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/tracker_primary_text"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    tools:text="3.1 km" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="92dp"
+                android:layout_marginStart="6dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_metric_shell"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/hydration_title"
+                    android:textColor="@color/tracker_secondary_text"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tvHomeHydration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/tracker_primary_text"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    tools:text="750 ml" />
+            </LinearLayout>
         </LinearLayout>
 
         <TextView
@@ -170,18 +305,20 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
-        <LinearLayout
+        <GridLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:orientation="horizontal">
+            android:columnCount="2"
+            android:rowCount="2">
 
             <LinearLayout
                 android:id="@+id/openTrackerCard"
                 android:layout_width="0dp"
-                android:layout_height="128dp"
+                android:layout_height="132dp"
+                android:layout_columnWeight="1"
                 android:layout_marginEnd="6dp"
-                android:layout_weight="1"
+                android:layout_marginBottom="12dp"
                 android:background="@drawable/bg_tracker_card"
                 android:clickable="true"
                 android:focusable="true"
@@ -189,15 +326,12 @@
                 android:orientation="vertical"
                 android:padding="14dp">
 
-                <TextView
+                <ImageView
                     android:layout_width="42dp"
                     android:layout_height="42dp"
                     android:background="@drawable/bg_action_teal"
-                    android:gravity="center"
-                    android:text="@string/icon_steps"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:padding="9dp"
+                    android:src="@drawable/ic_steps" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -220,9 +354,10 @@
             <LinearLayout
                 android:id="@+id/openWorkoutCard"
                 android:layout_width="0dp"
-                android:layout_height="128dp"
+                android:layout_height="132dp"
+                android:layout_columnWeight="1"
                 android:layout_marginStart="6dp"
-                android:layout_weight="1"
+                android:layout_marginBottom="12dp"
                 android:background="@drawable/bg_tracker_card"
                 android:clickable="true"
                 android:focusable="true"
@@ -230,15 +365,12 @@
                 android:orientation="vertical"
                 android:padding="14dp">
 
-                <TextView
+                <ImageView
                     android:layout_width="42dp"
                     android:layout_height="42dp"
                     android:background="@drawable/bg_action_orange"
-                    android:gravity="center"
-                    android:text="@string/icon_workout"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:padding="9dp"
+                    android:src="@drawable/ic_workout" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -257,20 +389,13 @@
                     android:textColor="@color/tracker_secondary_text"
                     android:textSize="12sp" />
             </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:orientation="horizontal">
 
             <LinearLayout
                 android:id="@+id/openFitnessPlusCard"
                 android:layout_width="0dp"
-                android:layout_height="116dp"
+                android:layout_height="132dp"
+                android:layout_columnWeight="1"
                 android:layout_marginEnd="6dp"
-                android:layout_weight="1"
                 android:background="@drawable/bg_tracker_card"
                 android:clickable="true"
                 android:focusable="true"
@@ -278,32 +403,37 @@
                 android:orientation="vertical"
                 android:padding="14dp">
 
-                <TextView
+                <ImageView
                     android:layout_width="42dp"
                     android:layout_height="42dp"
                     android:background="@drawable/bg_action_blue"
-                    android:gravity="center"
-                    android:text="@string/icon_fitness_plus"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:padding="9dp"
+                    android:src="@drawable/ic_coach" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="12dp"
                     android:text="@string/fitness_plus_label"
                     android:textColor="@color/tracker_primary_text"
                     android:textSize="16sp"
                     android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/home_coach_hint"
+                    android:textColor="@color/tracker_secondary_text"
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/openSharingCard"
                 android:layout_width="0dp"
-                android:layout_height="116dp"
+                android:layout_height="132dp"
+                android:layout_columnWeight="1"
                 android:layout_marginStart="6dp"
-                android:layout_weight="1"
                 android:background="@drawable/bg_tracker_card"
                 android:clickable="true"
                 android:focusable="true"
@@ -311,23 +441,99 @@
                 android:orientation="vertical"
                 android:padding="14dp">
 
-                <TextView
+                <ImageView
                     android:layout_width="42dp"
                     android:layout_height="42dp"
                     android:background="@drawable/bg_action_green"
-                    android:gravity="center"
-                    android:text="@string/icon_share"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:padding="9dp"
+                    android:src="@drawable/ic_share_fit" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="12dp"
                     android:text="@string/sharing_label"
                     android:textColor="@color/tracker_primary_text"
                     android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/home_share_hint"
+                    android:textColor="@color/tracker_secondary_text"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </GridLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_tracker_card"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/home_plan_title"
+                android:textColor="@color/tracker_primary_text"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvHomeCoach"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/tracker_secondary_text"
+                android:textSize="14sp"
+                android:lineSpacingExtra="4dp"
+                tools:text="Walk 20 minutes, add 500 ml water, then stretch." />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="42dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_tracker_day_unselected"
+                    android:gravity="center"
+                    android:text="@string/home_plan_walk"
+                    android:textColor="@color/tracker_primary_text"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="42dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_tracker_day_unselected"
+                    android:gravity="center"
+                    android:text="@string/home_plan_water"
+                    android:textColor="@color/tracker_primary_text"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="42dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_tracker_day_unselected"
+                    android:gravity="center"
+                    android:text="@string/home_plan_recover"
+                    android:textColor="@color/tracker_primary_text"
+                    android:textSize="12sp"
                     android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
@@ -465,17 +671,38 @@
                 app:icon="@android:drawable/ic_menu_manage" />
         </LinearLayout>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/switchToNext"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="52dp"
+            android:layout_height="56dp"
             android:layout_marginTop="14dp"
             android:layout_marginBottom="8dp"
-            android:text="@string/open_doctor"
-            android:textColor="@color/tracker_primary_text"
-            app:backgroundTint="@color/tracker_chip_bg"
-            app:cornerRadius="16dp"
-            app:icon="@android:drawable/ic_menu_call"
-            app:iconTint="@color/tracker_primary_text" />
+            android:background="@drawable/bg_nav_pill"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="6dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/switchToNext"
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_marginEnd="6dp"
+                android:layout_weight="1"
+                android:text="@string/open_doctor"
+                android:textColor="@color/tracker_primary_text"
+                app:backgroundTint="@color/white"
+                app:cornerRadius="20dp"
+                app:icon="@drawable/ic_doctor"
+                app:iconTint="@color/tracker_primary_text" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/openHydrationShortcut"
+                android:layout_width="52dp"
+                android:layout_height="44dp"
+                android:contentDescription="@string/hydration_title"
+                app:backgroundTint="@color/tracker_accent_alt"
+                app:cornerRadius="20dp"
+                app:icon="@drawable/ic_water"
+                app:iconTint="@color/white" />
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>
