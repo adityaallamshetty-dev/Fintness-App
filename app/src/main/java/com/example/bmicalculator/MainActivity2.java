@@ -1,5 +1,6 @@
 package com.example.bmicalculator;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -25,9 +26,9 @@ public class MainActivity2 extends AppCompatActivity {
             Intent dialIntent = new Intent(Intent.ACTION_DIAL);
             dialIntent.setData(Uri.parse("tel:" + DOCTOR_PHONE));
 
-            if (dialIntent.resolveActivity(getPackageManager()) != null) {
+            try {
                 startActivity(dialIntent);
-            } else {
+            } catch (ActivityNotFoundException exception) {
                 Toast.makeText(this, "No phone app found on this device.", Toast.LENGTH_SHORT).show();
             }
         });

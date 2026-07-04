@@ -25,6 +25,9 @@
     <string name="home_coach_low">Start smooth: 20-min walk, 500 ml water, then light stretching.</string>
     <string name="home_coach_mid">Good momentum: add one brisk 12-min interval block and finish with hydration.</string>
     <string name="home_coach_high">Strong day: keep it steady, protect recovery, and close your step ring.</string>
+    <string name="home_snapshot_line">%1$d day streak - Last workout: %2$s</string>
+    <string name="home_walk_logged">Walk logged: %1$d steps added.</string>
+    <string name="none_label">None</string>
     <string name="icon_steps">S</string>
     <string name="icon_workout">W</string>
     <string name="icon_fitness_plus">+</string>
@@ -116,6 +119,10 @@
     <string name="plan_price">7 days free, then Rs 199/month</string>
     <string name="weekly_coach_title">Weekly Coach</string>
     <string name="weekly_coach_body">Your plan adapts around steps, BMI, mood, hydration, and active calories so each week has a clear target.</string>
+    <string name="plan_trial_name">7-Day Trial</string>
+    <string name="plan_restored_name">Restored Plus Plan</string>
+    <string name="plan_status_free">No active plan yet. Start the trial to unlock a higher daily goal and weekly coaching.</string>
+    <string name="plan_status_active">%1$s active. Your daily move goal is now upgraded.</string>
 
     <string name="workout_title">Workout Hub</string>
     <string name="workout_subtitle">Start real sessions and find nearby places</string>
@@ -130,6 +137,9 @@
     <string name="workout_plan_body">Warm up for 5 minutes\nWalk briskly for 12 minutes\nRun easy for 8 minutes\nCool down and hydrate</string>
     <string name="route_card_title">Outdoor Routes</string>
     <string name="route_card_body">Find nearby parks or tracks and start moving with a safer open-space route.</string>
+    <string name="workout_status_ready">Ready. Start a walk or run to log it into your live tracker.</string>
+    <string name="workout_status_started">%1$s started: %2$d active calories and %3$d steps logged.</string>
+    <string name="workout_logged_to_tracker">Workout added to your tracker.</string>
 
     <string name="sharing_title">Sharing Center</string>
     <string name="sharing_subtitle">Share progress with friends and family</string>
@@ -139,6 +149,8 @@
     <string name="stats_copied">Stats copied.</string>
     <string name="progress_card_title">Progress Snapshot</string>
     <string name="progress_card_body">Share a clean health update with your steps, BMI progress, workout habit, and daily consistency.</string>
+    <string name="sms_invite_body">Join me on FitNest Fitness and track daily steps, workouts, hydration, and BMI progress.</string>
+    <string name="share_summary_template">FitNest Summary\nSteps: %1$,d\nDistance: %2$.2f km\nActive calories: %3$d kcal\nHydration: %4$d ml\nMode: %5$s</string>
 
     <string name="momentum_title">Momentum Dashboard</string>
     <string name="momentum_subtitle">Track movement, goals, and quick actions in one view</string>
