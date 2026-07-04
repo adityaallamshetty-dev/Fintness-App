@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,9 +27,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.graphics.Insets;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
@@ -97,6 +101,7 @@ public class StepTrackerActivity extends AppCompatActivity {
     private TextInputEditText bmiWeightInput;
     private TextInputEditText bmiFeetInput;
     private TextInputEditText bmiInchesInput;
+    private ScrollView trackerRoot;
 
     private LinearProgressIndicator progressDailyGoal;
     private CircularProgressIndicator progressStepRing;
@@ -198,6 +203,7 @@ public class StepTrackerActivity extends AppCompatActivity {
     }
 
     private void bindViews() {
+        trackerRoot = findViewById(R.id.trackerRoot);
         btnBack = findViewById(R.id.btnBack);
         btnCalendar = findViewById(R.id.btnCalendar);
         btnShare = findViewById(R.id.btnShare);
@@ -252,6 +258,39 @@ public class StepTrackerActivity extends AppCompatActivity {
                 findViewById(R.id.tvDaySat),
                 findViewById(R.id.tvDaySun)
         };
+
+        setupKeyboardAwareScrolling();
+    }
+
+    private void setupKeyboardAwareScrolling() {
+        ViewCompat.setOnApplyWindowInsetsListener(trackerRoot, (view, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            Insets ime = insets.getInsets(WindowInsetsCompat.Type.ime());
+            int bottomInset = Math.max(systemBars.bottom, ime.bottom);
+            view.setPadding(view.getPaddingLeft(), view.getPaddingTop(), view.getPaddingRight(), bottomInset + dp(18));
+            return insets;
+        });
+
+        keepInputVisible(bmiWeightInput);
+        keepInputVisible(bmiFeetInput);
+        keepInputVisible(bmiInchesInput);
+    }
+
+    private void keepInputVisible(View input) {
+        input.setOnFocusChangeListener((view, hasFocus) -> {
+            if (hasFocus) {
+                trackerRoot.postDelayed(() -> scrollInputAboveKeyboard(view), 220L);
+            }
+        });
+    }
+
+    private void scrollInputAboveKeyboard(View input) {
+        int[] scrollLocation = new int[2];
+        int[] inputLocation = new int[2];
+        trackerRoot.getLocationOnScreen(scrollLocation);
+        input.getLocationOnScreen(inputLocation);
+        int targetY = trackerRoot.getScrollY() + inputLocation[1] - scrollLocation[1] - dp(220);
+        trackerRoot.smoothScrollTo(0, Math.max(0, targetY));
     }
 
     private void loadUserState() {

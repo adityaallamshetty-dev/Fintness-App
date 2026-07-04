@@ -6,15 +6,20 @@ import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
@@ -35,10 +40,12 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvHomeDistance;
     private TextView tvHomeHydration;
     private TextView tvHomeCoach;
+    private PremiumOrbitView premiumOrbitView;
     private LinearProgressIndicator progressHomeGoal;
     private TextInputEditText editTextWeight;
     private TextInputEditText editTextHeightFt;
     private TextInputEditText editTextHeightIn;
+    private ScrollView mainScroll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         MaterialButton openHydrationShortcut = findViewById(R.id.openHydrationShortcut);
         MaterialButton calculateButton = findViewById(R.id.calculateButton);
 
+        mainScroll = findViewById(R.id.mainScroll);
         textViewResult = findViewById(R.id.textViewResult);
         tvHomeGreeting = findViewById(R.id.tvHomeGreeting);
         tvHomeReadiness = findViewById(R.id.tvHomeReadiness);
@@ -70,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
         tvHomeDistance = findViewById(R.id.tvHomeDistance);
         tvHomeHydration = findViewById(R.id.tvHomeHydration);
         tvHomeCoach = findViewById(R.id.tvHomeCoach);
+        premiumOrbitView = findViewById(R.id.premiumOrbitView);
         progressHomeGoal = findViewById(R.id.progressHomeGoal);
         editTextWeight = findViewById(R.id.editTextweight);
         editTextHeightFt = findViewById(R.id.ediTextheight);
@@ -88,8 +97,10 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.chipAddWater).setOnClickListener(view -> addHomeHydration());
         findViewById(R.id.chipRecover).setOnClickListener(view -> openActivity(StepTrackerActivity.class));
 
+        setupKeyboardAwareScrolling();
         startTrackingIfPermissionReady();
         updateHomeStats();
+        animateHomeEntrance();
     }
 
     @Override
@@ -100,6 +111,61 @@ public class MainActivity extends AppCompatActivity {
 
     private void openActivity(Class<?> destination) {
         startActivity(new Intent(this, destination));
+    }
+
+    private void setupKeyboardAwareScrolling() {
+        ViewCompat.setOnApplyWindowInsetsListener(mainScroll, (view, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            Insets ime = insets.getInsets(WindowInsetsCompat.Type.ime());
+            int bottomInset = Math.max(systemBars.bottom, ime.bottom);
+            view.setPadding(view.getPaddingLeft(), view.getPaddingTop(), view.getPaddingRight(), bottomInset + dp(18));
+            return insets;
+        });
+
+        keepInputVisible(editTextWeight);
+        keepInputVisible(editTextHeightFt);
+        keepInputVisible(editTextHeightIn);
+    }
+
+    private void keepInputVisible(View input) {
+        input.setOnFocusChangeListener((view, hasFocus) -> {
+            if (hasFocus) {
+                mainScroll.postDelayed(() -> scrollInputAboveKeyboard(view), 220L);
+            }
+        });
+    }
+
+    private void scrollInputAboveKeyboard(View input) {
+        int[] scrollLocation = new int[2];
+        int[] inputLocation = new int[2];
+        mainScroll.getLocationOnScreen(scrollLocation);
+        input.getLocationOnScreen(inputLocation);
+        int targetY = mainScroll.getScrollY() + inputLocation[1] - scrollLocation[1] - dp(220);
+        mainScroll.smoothScrollTo(0, Math.max(0, targetY));
+    }
+
+    private void animateHomeEntrance() {
+        int[] animatedIds = new int[]{
+                R.id.homeHero,
+                R.id.openTrackerCard,
+                R.id.openWorkoutCard,
+                R.id.openFitnessPlusCard,
+                R.id.openSharingCard
+        };
+        for (int i = 0; i < animatedIds.length; i++) {
+            View view = findViewById(animatedIds[i]);
+            if (view == null) {
+                continue;
+            }
+            view.setAlpha(0f);
+            view.setTranslationY(dp(14));
+            view.animate()
+                    .alpha(1f)
+                    .translationY(0f)
+                    .setStartDelay(i * 75L)
+                    .setDuration(420L)
+                    .start();
+        }
     }
 
     private void updateHomeStats() {
@@ -123,6 +189,7 @@ public class MainActivity extends AppCompatActivity {
 
         tvHomeGreeting.setText(greetingForNow());
         tvHomeReadiness.setText(String.valueOf(readiness));
+        premiumOrbitView.setReadiness(readiness);
         tvHomePlan.setText(getString(R.string.home_snapshot_line, streakDays, lastWorkout));
         tvHomeGoal.setText(getString(R.string.home_goal_value, progress));
         progressHomeGoal.setProgress(progress);
@@ -255,5 +322,9 @@ public class MainActivity extends AppCompatActivity {
         textViewResult.setBackgroundTintList(ColorStateList.valueOf(getColor(backgroundColor)));
         textViewResult.setTextColor(getColor(textColor));
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+    }
+
+    private int dp(int value) {
+        return Math.round(value * getResources().getDisplayMetrics().density);
     }
 }
