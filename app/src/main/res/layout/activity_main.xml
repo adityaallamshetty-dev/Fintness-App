@@ -500,11 +500,15 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/chipStartWalk"
                     android:layout_width="0dp"
                     android:layout_height="42dp"
                     android:layout_marginEnd="6dp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_tracker_day_unselected"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
                     android:gravity="center"
                     android:text="@string/home_plan_walk"
                     android:textColor="@color/tracker_primary_text"
@@ -512,12 +516,16 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/chipAddWater"
                     android:layout_width="0dp"
                     android:layout_height="42dp"
                     android:layout_marginStart="6dp"
                     android:layout_marginEnd="6dp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_tracker_day_unselected"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
                     android:gravity="center"
                     android:text="@string/home_plan_water"
                     android:textColor="@color/tracker_primary_text"
@@ -525,11 +533,15 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/chipRecover"
                     android:layout_width="0dp"
                     android:layout_height="42dp"
                     android:layout_marginStart="6dp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_tracker_day_unselected"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
                     android:gravity="center"
                     android:text="@string/home_plan_recover"
                     android:textColor="@color/tracker_primary_text"

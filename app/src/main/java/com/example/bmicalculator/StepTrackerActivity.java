@@ -1,6 +1,7 @@
 package com.example.bmicalculator;
 
 import android.Manifest;
+import android.content.ActivityNotFoundException;
 import android.app.DatePickerDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -45,15 +46,15 @@ public class StepTrackerActivity extends AppCompatActivity {
 
     private static final int REQUEST_ACTIVITY_RECOGNITION = 3001;
     private static final int REQUEST_NOTIFICATIONS = 3002;
-    private static final int DEFAULT_CALORIE_GOAL = 410;
+    private static final int DEFAULT_CALORIE_GOAL = FitnessState.DEFAULT_CALORIE_GOAL;
     private static final int STEP_RING_GOAL = 10000;
     private static final int BASE_TOTAL_CALORIES = 1180;
-    private static final float KM_PER_STEP = 0.00078f;
-    private static final float CALORIES_PER_STEP = 0.04f;
-    private static final String PREFS_NAME = "fitness_state";
-    private static final String KEY_CALORIE_GOAL = "calorie_goal";
-    private static final String KEY_HYDRATION_ML = "hydration_ml";
-    private static final String KEY_SELECTED_MOOD = "selected_mood";
+    private static final float KM_PER_STEP = FitnessState.KM_PER_STEP;
+    private static final float CALORIES_PER_STEP = FitnessState.CALORIES_PER_STEP;
+    private static final String PREFS_NAME = StepTrackingService.PREFS_NAME;
+    private static final String KEY_CALORIE_GOAL = FitnessState.KEY_CALORIE_GOAL;
+    private static final String KEY_HYDRATION_ML = FitnessState.KEY_HYDRATION_ML;
+    private static final String KEY_SELECTED_MOOD = FitnessState.KEY_SELECTED_MOOD;
 
     private ImageButton btnBack;
     private ImageButton btnCalendar;
@@ -286,14 +287,8 @@ public class StepTrackerActivity extends AppCompatActivity {
     private void setupActionButtons() {
         btnQuickAdd.setOnClickListener(view -> quickAddActivity());
         btnQuickRemove.setOnClickListener(view -> quickRemoveActivity());
-        btnStartWalk.setOnClickListener(view -> {
-            Toast.makeText(this, getString(R.string.walk_started), Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(this, WorkoutActivity.class));
-        });
-        btnStartRun.setOnClickListener(view -> {
-            Toast.makeText(this, getString(R.string.run_started), Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(this, WorkoutActivity.class));
-        });
+        btnStartWalk.setOnClickListener(view -> logWorkoutFromTracker(getString(R.string.walk_mode), 30));
+        btnStartRun.setOnClickListener(view -> logWorkoutFromTracker(getString(R.string.run_mode), 70));
         btnFindRoute.setOnClickListener(view -> openRouteSearch());
         btnOpenFitness.setOnClickListener(view -> startActivity(new Intent(this, FitnessPlusActivity.class)));
         btnOpenSharing.setOnClickListener(view -> startActivity(new Intent(this, SharingActivity.class)));
@@ -607,6 +602,16 @@ public class StepTrackerActivity extends AppCompatActivity {
         sensorSteps = Math.max(0, sessionSteps - manualExtraSteps);
     }
 
+    private void logWorkoutFromTracker(String mode, int calories) {
+        int addedSteps = FitnessState.logWorkout(this, mode, calories);
+        loadLiveTrackingSnapshot();
+        int currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+        hourlyCalories[currentHour] += calories;
+        Toast.makeText(this, getString(R.string.workout_status_started, mode, calories, addedSteps), Toast.LENGTH_SHORT).show();
+        updateMetrics();
+        requestTrackingRefresh();
+    }
+
     private void quickAddActivity() {
         loadLiveTrackingSnapshot();
         int addedCalories = 30;
@@ -615,6 +620,7 @@ public class StepTrackerActivity extends AppCompatActivity {
         sessionSteps = sensorSteps + manualExtraSteps;
         lastSessionSteps = sessionSteps;
         saveManualStepAdjustments();
+        FitnessState.markActiveToday(this);
 
         int currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
         hourlyCalories[currentHour] += addedCalories;
@@ -638,6 +644,7 @@ public class StepTrackerActivity extends AppCompatActivity {
         sessionSteps = sensorSteps + manualExtraSteps;
         lastSessionSteps = sessionSteps;
         saveManualStepAdjustments();
+        FitnessState.markActiveToday(this);
 
         int currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
         float removedCalories = removedSteps * CALORIES_PER_STEP;
@@ -666,13 +673,12 @@ public class StepTrackerActivity extends AppCompatActivity {
         }
 
         int previousHydration = hydrationMl;
-        hydrationMl = Math.max(0, hydrationMl + deltaMl);
+        hydrationMl = FitnessState.addHydration(this, deltaMl);
         if (hydrationMl == previousHydration) {
             Toast.makeText(this, getString(R.string.hydration_minimum), Toast.LENGTH_SHORT).show();
             return;
         }
 
-        saveUserState();
         if (deltaMl > 0) {
             Toast.makeText(this, getString(R.string.hydration_added), Toast.LENGTH_SHORT).show();
         } else {
@@ -785,6 +791,7 @@ public class StepTrackerActivity extends AppCompatActivity {
         }
 
         tvBmiResult.setText(getString(R.string.tracker_bmi_result_value, bmi, category));
+        FitnessState.saveBmi(this, bmi, category);
     }
 
     private String textFromInput(TextInputEditText inputEditText) {
@@ -859,7 +866,7 @@ public class StepTrackerActivity extends AppCompatActivity {
     }
 
     private void shareSummary() {
-        String text = "PulseForge Summary\n"
+        String text = "FitNest Summary\n"
                 + "Date: " + tvDateTitle.getText() + "\n"
                 + "Energy: " + tvMoveValue.getText() + "\n"
                 + "Steps: " + tvStepCount.getText() + "\n"
@@ -876,9 +883,9 @@ public class StepTrackerActivity extends AppCompatActivity {
 
     private void openRouteSearch() {
         Intent mapsIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("geo:0,0?q=running track near me"));
-        if (mapsIntent.resolveActivity(getPackageManager()) != null) {
+        try {
             startActivity(mapsIntent);
-        } else {
+        } catch (ActivityNotFoundException exception) {
             Toast.makeText(this, getString(R.string.no_compatible_app), Toast.LENGTH_SHORT).show();
         }
     }

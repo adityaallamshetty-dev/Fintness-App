@@ -41,7 +41,7 @@ public class StepTrackingService extends Service implements SensorEventListener 
     public static final String KEY_MANUAL_EXTRA_STEPS = "manual_extra_steps";
     public static final String KEY_SENSOR_READY = "service_sensor_ready";
 
-    private static final String CHANNEL_ID = "pulseforge_step_tracking";
+    private static final String CHANNEL_ID = "fitnest_step_tracking";
     private static final int NOTIFICATION_ID = 1107;
 
     private SensorManager sensorManager;
