@@ -2,9 +2,11 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainScroll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_tracker_gradient"
+    android:clipToPadding="false"
     android:fillViewport="true"
     android:overScrollMode="never"
     tools:context=".MainActivity">
@@ -108,6 +110,12 @@
                 android:text="@string/home_hero_subtitle"
                 android:textColor="@color/home_hero_subtitle"
                 android:textSize="14sp" />
+
+            <com.example.bmicalculator.PremiumOrbitView
+                android:id="@+id/premiumOrbitView"
+                android:layout_width="match_parent"
+                android:layout_height="184dp"
+                android:layout_marginTop="16dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"

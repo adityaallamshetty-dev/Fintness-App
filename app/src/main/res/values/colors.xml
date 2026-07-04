@@ -3,10 +3,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="primary">#0D6EFD</color>
-    <color name="primary_dark">#0A58CA</color>
-    <color name="secondary">#20C997</color>
-    <color name="surface">#F4F7FB</color>
+    <color name="primary">#0C7C8A</color>
+    <color name="primary_dark">#081120</color>
+    <color name="secondary">#FFB84D</color>
+    <color name="surface">#F4F8F9</color>
     <color name="surface_card">#FFFFFFFF</color>
     <color name="text_primary">#1F2937</color>
     <color name="text_secondary">#6B7280</color>
@@ -18,25 +18,25 @@
     <color name="bmi_under_text">#664D03</color>
     <color name="bmi_over_text">#842029</color>
 
-    <color name="tracker_bg_top">#F4FAFF</color>
-    <color name="tracker_bg_bottom">#FFF5E9</color>
+    <color name="tracker_bg_top">#F4FBFA</color>
+    <color name="tracker_bg_bottom">#FFF7EF</color>
     <color name="tracker_card">#FFFFFFFF</color>
-    <color name="tracker_primary_text">#17324A</color>
-    <color name="tracker_secondary_text">#6B8298</color>
+    <color name="tracker_primary_text">#101B2D</color>
+    <color name="tracker_secondary_text">#647887</color>
     <color name="tracker_accent">#FF7A59</color>
-    <color name="tracker_accent_alt">#1BB2C8</color>
+    <color name="tracker_accent_alt">#0C9AA6</color>
     <color name="tracker_success">#22A06B</color>
-    <color name="tracker_progress_track">#E5EEF6</color>
-    <color name="tracker_chip_bg">#EAF1F8</color>
+    <color name="tracker_progress_track">#DBE9EA</color>
+    <color name="tracker_chip_bg">#EAF6F5</color>
 
-    <color name="home_hero_start">#16324F</color>
-    <color name="home_hero_end">#1BB2C8</color>
-    <color name="home_hero_subtitle">#D9F7FA</color>
+    <color name="home_hero_start">#081120</color>
+    <color name="home_hero_end">#0C7C8A</color>
+    <color name="home_hero_subtitle">#DDF8F4</color>
     <color name="home_stat_bg">#24FFFFFF</color>
     <color name="home_stat_stroke">#40FFFFFF</color>
     <color name="goal_chip_bg">#33FFFFFF</color>
-    <color name="metric_shell_bg">#F9FCFF</color>
-    <color name="metric_shell_stroke">#D8E7F1</color>
-    <color name="nav_pill_bg">#FDFEFF</color>
-    <color name="nav_pill_stroke">#D7E6F2</color>
+    <color name="metric_shell_bg">#FAFDFC</color>
+    <color name="metric_shell_stroke">#D6E7E5</color>
+    <color name="nav_pill_bg">#FAFDFC</color>
+    <color name="nav_pill_stroke">#D6E7E5</color>
 </resources>
